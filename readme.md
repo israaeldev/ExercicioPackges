@@ -12,7 +12,12 @@ Este pacote gerencia as operações relacionadas aos alunos.
 
 Descrição: Remove um aluno da tabela aluno com base no id_aluno fornecido.
 
-Uso: excluir_aluno(p_id_aluno IN NUMBER)
+Uso:
+
+ BEGIN
+    excluir_aluno(1); -- Substitua 1 pelo ID do aluno que deseja excluir
+END;
+/
 
 Tabelas Envolvidas:
 
@@ -30,7 +35,12 @@ Realiza ROLLBACK em caso de erro inesperado.
 
 Descrição: Lista todos os alunos cuja data de nascimento indica idade superior a 18 anos.
 
-Uso: listar_alunos_maiores_de_18()
+Uso: 
+
+BEGIN
+    listar_alunos_maiores_de_18;
+END;
+/
 
 Tabelas Envolvidas:
 
@@ -40,7 +50,13 @@ aluno: Consulta a idade de cada aluno com base na data de nascimento.
 
 Descrição: Lista os alunos matriculados em um curso específico.
 
-Uso: listar_alunos_por_curso(p_id_curso NUMBER)
+Uso: 
+
+BEGIN
+    listar_alunos_por_curso(1);
+END;
+/
+
 
 Tabelas Envolvidas:
 
@@ -58,7 +74,13 @@ Este pacote gerencia as disciplinas cadastradas no sistema.
 
 Descrição: Insere uma nova disciplina no banco de dados.
 
-Uso: cadastrar_disciplina(p_nome IN VARCHAR2, p_descricao IN CLOB, p_carga_horaria IN NUMBER)
+Uso: 
+
+BEGIN
+    cadastrar_disciplina('Matemática', 'Disciplina focada em cálculos e teorias matemáticas.', 60);
+END;
+/
+
 
 Tabelas Envolvidas:
 
@@ -70,7 +92,12 @@ Ação: Adiciona uma nova disciplina com os dados fornecidos.
 
 Descrição: Lista o número de alunos matriculados em disciplinas com mais de 10 alunos.
 
-Uso: listar_total_alunos_por_disciplina()
+Uso: 
+
+BEGIN
+    listar_total_alunos_por_disciplina;
+END;
+/
 
 Tabelas Envolvidas:
 
@@ -82,7 +109,13 @@ matricula: Armazena os dados de matrícula de alunos em disciplinas.
 
 Descrição: Calcula a média de idade dos alunos matriculados em uma disciplina específica.
 
-Uso: calcular_media_idade_por_disciplina(p_id_disciplina IN NUMBER)
+Uso: 
+
+BEGIN
+    calcular_media_idade_por_disciplina(1); -- Substitua 1 pelo ID da disciplina desejada
+END;
+/
+
 
 Tabelas Envolvidas:
 
@@ -94,7 +127,13 @@ matricula: Relaciona alunos com disciplinas.
 
 Descrição: Lista todos os alunos matriculados em uma disciplina específica.
 
-Uso: listar_alunos_por_disciplina(p_id_disciplina IN NUMBER)
+Uso: 
+
+BEGIN
+    listar_alunos_por_disciplina(1); -- Substitua 1 pelo ID da disciplina desejada
+END;
+/
+
 
 Tabelas Envolvidas:
 
@@ -110,7 +149,13 @@ Este pacote gerencia os dados e as operações relacionadas aos professores.
 
 Descrição: Lista os professores com mais de uma turma associada.
 
-Uso: listar_professores_com_mais_de_uma_turma()
+Uso: 
+
+BEGIN
+    listar_professores_com_mais_de_uma_turma;
+END;
+/
+
 
 Tabelas Envolvidas:
 
@@ -122,7 +167,15 @@ turma: Relaciona professores às turmas.
 
 Descrição: Calcula o número de turmas associadas a um professor específico.
 
-Uso: total_turmas_professor(p_id_professor IN NUMBER) RETURN NUMBER
+Uso: 
+
+DECLARE
+    v_total NUMBER;
+BEGIN
+    v_total := total_turmas_professor(1); -- Substitua 1 pelo ID do professor desejado
+    DBMS_OUTPUT.PUT_LINE('Total de turmas: ' || v_total);
+END;
+/
 
 Tabelas Envolvidas:
 
@@ -132,7 +185,16 @@ turma: Consulta as turmas atribuídas ao professor fornecido.
 
 Descrição: Retorna o nome do professor associado a uma disciplina específica.
 
-Uso: professor_disciplina(p_id_disciplina IN NUMBER) RETURN VARCHAR2
+Uso: 
+
+DECLARE
+    v_nome VARCHAR2(100);
+BEGIN
+    v_nome := professor_disciplina(1); -- Substitua 1 pelo ID da disciplina desejada
+    DBMS_OUTPUT.PUT_LINE('Nome do professor: ' || v_nome);
+END;
+/
+
 
 Tabelas Envolvidas:
 
